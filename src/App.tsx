@@ -240,7 +240,7 @@ const Hero = () => {
             <span className="text-sm font-medium text-stone-500 uppercase tracking-widest">4.6/5 from more than 1200 reviews</span>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-serif font-bold text-stone-900 leading-[0.9] mb-8">
+          <h1 className="text-5xl md:text-8xl font-serif font-bold text-stone-900 leading-[0.9] mb-8">
             Authentic <br />
             <span className="text-brand-olive">Indonesian</span> <br />
             Soul Food.
@@ -274,7 +274,7 @@ const Hero = () => {
           transition={{ duration: 1, type: 'spring' }}
           className="relative"
         >
-          <div className="aspect-square rounded-[40px] overflow-hidden shadow-2xl rotate-3 bg-brand-olive/10 p-4">
+          <div className="aspect-square rounded-[40px] overflow-hidden shadow-2xl md:rotate-3 bg-brand-olive/10 p-4">
             <img 
               src="https://imgur.com/SZxEXku.png" 
               alt="Signature Dish" 
@@ -420,7 +420,7 @@ const AboutSection = () => {
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="absolute top-12 -right-12 w-48 h-48 bg-brand-terracotta rounded-full flex flex-col items-center justify-center text-brand-cream p-6 text-center shadow-xl rotate-12">
+          <div className="absolute top-12 -right-4 md:-right-12 w-48 h-48 bg-brand-terracotta rounded-full flex flex-col items-center justify-center text-brand-cream p-6 text-center shadow-xl rotate-12 hidden sm:flex">
             <UtensilsCrossed size={32} className="mb-2" />
             <p className="text-sm font-bold uppercase tracking-widest">Est. 2014</p>
             <p className="text-xs opacity-80">Serving Adelaide for over a decade</p>
@@ -622,7 +622,7 @@ const Footer = () => {
 
 export default function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
       <AboutSection />
