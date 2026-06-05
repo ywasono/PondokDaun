@@ -16,101 +16,15 @@ import {
   Menu as MenuIcon, 
   X,
   UtensilsCrossed,
-  Leaf
+  Leaf,
+  Camera
 } from 'lucide-react';
+import { MENU_DATA } from './menuData';
+import { MenuItem } from './types';
 
 // --- Data ---
 
 const LOGO_URL = "https://i.imgur.com/pZMIrIz.png";
-
-const MENU_DATA = [
-  {
-    category: "Snacks",
-    items: [
-      { name: "Fried Chicken Spring Roll", description: "Crispy rolls filled with seasoned chicken and vegetables." },
-      { name: "Wonton", description: "Crispy fried wontons served with sweet chili sauce." },
-      { name: "Chicken Satay", description: "Grilled chicken skewers with peanut sauce." },
-      { name: "Potato Croquette", description: "Creamy mashed potato with minced meat, breaded and fried." },
-      { name: "Chicken Risoles", description: "Indonesian style crepes filled with chicken ragout." }
-    ]
-  },
-  {
-    category: "Traditional Soup",
-    items: [
-      { name: "Beef Ribs Soup", description: "Tender beef ribs in a rich, aromatic clear broth." },
-      { name: "Traditional Chicken Soup", description: "Soto Ayam - Indonesian turmeric chicken soup with vermicelli." },
-      { name: "Wonton Noodle Soup", description: "Handmade wontons in a delicate broth with egg noodles." }
-    ]
-  },
-  {
-    category: "Indonesian Curry",
-    items: [
-      { name: "Chicken Curry", description: "Slow-cooked chicken in a rich coconut curry sauce." },
-      { name: "Lamb Curry", description: "Tender lamb pieces in a spicy and fragrant curry." },
-      { name: "Beef Rendang", description: "The legendary slow-cooked dry beef curry from West Sumatra." }
-    ]
-  },
-  {
-    category: "Traditional Grilled & Satay",
-    items: [
-      { name: "Grilled Beef Ribs", description: "Iga Bakar - Sweet and savory glazed grilled ribs." },
-      { name: "Grilled Chicken", description: "Ayam Bakar - Traditional charcoal-grilled chicken." },
-      { name: "Chicken Satay", description: "Classic skewers served with our signature peanut sauce." }
-    ]
-  },
-  {
-    category: "Traditional Fried",
-    items: [
-      { name: "Fried Chicken with Belacan Sauce", description: "Crispy chicken served with spicy shrimp paste sambal." },
-      { name: "Smashed Chicken in Penyet Sauce", description: "Ayam Penyet - Smashed fried chicken with super spicy sambal." },
-      { name: "Fried Chicken with Crispy Fried Flakes", description: "Ayam Kremes - Topped with savory crispy bits." },
-      { name: "Crispy Duck", description: "Bebek Goreng - Balinese style crispy fried duck." }
-    ]
-  },
-  {
-    category: "Coconut Rice (Nasi Lemak/Uduk)",
-    items: [
-      { name: "Fried Chicken Set", description: "Fragrant coconut rice with crispy chicken and sides." },
-      { name: "Slow Cooked Sweet Beef Set", description: "Empal Gentong style beef with coconut rice." },
-      { name: "Fried Whole Tilapia Fish Set", description: "Crispy whole fish served with fragrant rice." },
-      { name: "Hainanese Chicken Rice", description: "Poached chicken served with ginger-infused rice." }
-    ]
-  },
-  {
-    category: "Fried Rice (Nasi Goreng)",
-    items: [
-      { name: "Chicken Fried Rice", description: "Classic Indonesian fried rice with chicken." },
-      { name: "Seafood Fried Rice", description: "Wok-tossed rice with prawns and calamari." },
-      { name: "Beef Fried Rice", description: "Savory fried rice with tender beef slices." },
-      { name: "Lamb Fried Rice", description: "Fragrant fried rice with spiced lamb." },
-      { name: "Terasi Fried Rice", description: "Fried rice with aromatic shrimp paste." },
-      { name: "Anchovy Fried Rice", description: "Salty and savory with crispy anchovies." },
-      { name: "Vegetarian Fried Rice", description: "Loaded with fresh seasonal vegetables." }
-    ]
-  },
-  {
-    category: "Fried Noodle",
-    items: [
-      { name: "Chicken Fried Noodle", description: "Wok-tossed egg noodles with chicken and vegetables." },
-      { name: "Seafood Fried Noodle", description: "Egg noodles with prawns, fish cake, and calamari." },
-      { name: "Beef Fried Noodle", description: "Savory fried noodles with tender beef slices." },
-      { name: "Lamb Fried Noodle", description: "Spiced fried noodles with succulent lamb." },
-      { name: "Terasi Fried Noodle", description: "Aromatic fried noodles with shrimp paste." },
-      { name: "Vegetarian Fried Noodle", description: "Stir-fried noodles with seasonal greens and tofu." }
-    ]
-  },
-  {
-    category: "Fried Vermicelli",
-    items: [
-      { name: "Chicken Fried Vermicelli", description: "Thin rice noodles stir-fried with chicken." },
-      { name: "Seafood Fried Vermicelli", description: "Rice vermicelli with fresh seafood mix." },
-      { name: "Beef Fried Vermicelli", description: "Savory rice vermicelli with tender beef." },
-      { name: "Lamb Fried Vermicelli", description: "Fragrant rice vermicelli with spiced lamb." },
-      { name: "Terasi Fried Vermicelli", description: "Rice vermicelli with aromatic shrimp paste." },
-      { name: "Vegetarian Fried Vermicelli", description: "Light and healthy rice vermicelli with vegetables." }
-    ]
-  }
-];
 
 const GALLERY_IMAGES = [
   "https://i.imgur.com/x6Z1piV.png",
@@ -119,6 +33,8 @@ const GALLERY_IMAGES = [
   "https://i.imgur.com/CsKL1hO.png",
   "https://i.imgur.com/Gczoeo7.png",
   "https://i.imgur.com/UczBVKl.png",
+  "https://i.imgur.com/HCdZ0hs.png",
+  "https://i.imgur.com/5B9BRZm.png",
 ];
 
 // --- Components ---
@@ -290,6 +206,7 @@ const Hero = () => {
 
 const MenuSection = () => {
   const [activeCategory, setActiveCategory] = useState(MENU_DATA[0].category);
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
   return (
     <section id="menu" className="py-24 bg-white">
@@ -342,12 +259,56 @@ const MenuSection = () => {
             className="grid md:grid-cols-2 gap-x-12 gap-y-8"
           >
             {MENU_DATA.find(c => c.category === activeCategory)?.items.map((item, idx) => (
-              <div key={idx} className="group border-b border-stone-100 pb-6 hover:border-brand-olive/30 transition-colors">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="text-xl font-serif font-bold text-stone-800 group-hover:text-brand-olive transition-colors">{item.name}</h3>
-                  <div className="h-[1px] flex-grow mx-4 border-b border-dotted border-stone-300"></div>
+              <div 
+                key={idx} 
+                className="group border-b border-stone-100 pb-6 hover:border-brand-olive/30 transition-colors flex items-center justify-between gap-4"
+              >
+                <div className="flex-grow min-w-0">
+                  <div className="flex justify-between items-baseline mb-2">
+                    <h3 className="text-lg md:text-xl font-serif font-bold text-stone-800 group-hover:text-brand-olive transition-colors flex items-center flex-wrap gap-2 min-w-0">
+                      <span className="text-brand-terracotta/90 font-mono text-xs md:text-sm font-semibold bg-brand-terracotta/5 px-2 py-0.5 rounded shrink-0">
+                        {item.code}
+                      </span>
+                      <span className="truncate">{item.name}</span>
+                      {item.image && (
+                        <button
+                          onClick={() => setSelectedItem(item)}
+                          className="inline-flex items-center gap-1.5 text-[10px] font-sans font-medium text-brand-olive bg-brand-olive/5 hover:bg-brand-olive/15 border border-brand-olive/15 px-2 py-0.5 rounded-full cursor-pointer transition-all active:scale-95 shrink-0"
+                          title="View dish photo"
+                        >
+                          <Camera size={11} />
+                          <span className="uppercase tracking-wider font-semibold text-[9px]">Photo</span>
+                        </button>
+                      )}
+                    </h3>
+                    <div className="h-[1px] flex-grow mx-4 border-b border-dotted border-stone-200 hidden sm:block"></div>
+                    <span className="text-base md:text-lg font-bold text-brand-olive font-mono shrink-0">
+                      {item.price}
+                    </span>
+                  </div>
+                  {item.description && (
+                    <p className="text-stone-500 text-sm leading-relaxed pl-12 md:pl-14 pr-2">
+                      {item.description}
+                    </p>
+                  )}
                 </div>
-                <p className="text-stone-500 text-sm leading-relaxed">{item.description}</p>
+
+                {item.image && (
+                  <div 
+                    onClick={() => setSelectedItem(item)}
+                    className="relative shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer group/thumb hover:border-brand-olive/50 hover:shadow-md transition-all duration-300"
+                  >
+                    <img 
+                      src={item.image} 
+                      alt={item.name} 
+                      className="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <Camera size={16} className="text-white" />
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </motion.div>
@@ -366,6 +327,76 @@ const MenuSection = () => {
           </a>
         </div>
       </div>
+
+      {/* Modern Pop-up Photo Overlay */}
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedItem(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-md"
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0, y: 15 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 15 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-brand-cream rounded-3xl overflow-hidden shadow-2xl max-w-md w-full relative border border-stone-200/40"
+            >
+              <button 
+                onClick={() => setSelectedItem(null)}
+                className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/75 text-white rounded-full p-2 transition-transform duration-200 active:scale-95"
+                aria-label="Close image viewer"
+              >
+                <X size={18} />
+              </button>
+
+              <div className="aspect-[4/3] relative overflow-hidden bg-stone-100">
+                <img 
+                  src={selectedItem.image} 
+                  alt={selectedItem.name} 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent p-5">
+                  <span className="text-white bg-brand-terracotta px-2.5 py-1 rounded text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
+                    {selectedItem.code}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-6 md:p-8">
+                <div className="flex justify-between items-baseline mb-4 gap-4">
+                  <h3 className="text-xl md:text-2xl font-serif font-bold text-stone-950 leading-snug">
+                    {selectedItem.name}
+                  </h3>
+                  <span className="text-lg md:text-xl font-bold text-brand-olive font-mono shrink-0">
+                    {selectedItem.price}
+                  </span>
+                </div>
+                
+                {selectedItem.description && (
+                  <p className="text-stone-600 text-sm md:text-base leading-relaxed mb-6 border-l-2 border-brand-olive/35 pl-4 py-0.5">
+                    {selectedItem.description}
+                  </p>
+                )}
+
+                <div className="flex justify-end">
+                  <button 
+                    onClick={() => setSelectedItem(null)}
+                    className="bg-brand-olive hover:bg-brand-olive/90 text-brand-cream px-6 py-2.5 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 cursor-pointer"
+                  >
+                    Close Image
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
@@ -378,7 +409,7 @@ const GallerySection = () => {
           <span className="text-brand-terracotta font-medium uppercase tracking-[0.3em] text-sm mb-4 block">Visual Feast</span>
           <h2 className="text-5xl font-serif font-bold text-stone-900">Our Gallery</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {GALLERY_IMAGES.map((img, idx) => (
             <motion.div 
               key={idx}
@@ -500,64 +531,136 @@ const TestimonialsSection = () => {
 };
 
 const LocationSection = () => {
+  const [activeBranch, setActiveBranch] = useState("cbd");
+
+  const branches = [
+    {
+      id: "cbd",
+      name: "Adelaide CBD (Main)",
+      label: "Adelaide CBD",
+      address: "94 Currie St, Adelaide SA 5000, Australia",
+      phone: "08 8212 1449",
+      directionsUrl: "https://www.google.com/maps/place/Pondok+Daun+Restaurant,+94+Currie+St,+Adelaide+SA+5000",
+      embedMapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.282846875704!2d138.5935576767475!3d-34.92440977284149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab0cf288bd6fe09%3A0x7d36c07f6ad7f196!2sPondok%20Daun%20Restaurant!5e0!3m2!1sen!2sau!4v1713094800000!5m2!1sen!2sau",
+      facebookUrl: "https://www.facebook.com/PondokDaunADL",
+      hours: [
+        { label: "Mon - Sat", value: "11:30 AM - 8:30 PM" },
+        { label: "Sun", value: "Closed" }
+      ]
+    },
+    {
+      id: "sefton",
+      name: "Sefton Plaza Branch",
+      label: "Sefton Plaza",
+      address: "Shop 17/225 Main N Rd, Sefton Park SA 5083, Australia",
+      phone: "08 8117 9856",
+      directionsUrl: "https://www.google.com/maps/place/Pondok+Daun+Sefton+Plaza/@-34.8759604,138.6031649,17z",
+      embedMapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3273.1979313264424!2d138.6005899767448!3d-34.87596037281898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab0c9525b22c7d9%3A0xe2a51f5616fc1cdf!2sPondok+Daun+Sefton+Plaza!5e0!3m2!1sen!2sau!4v1713100000000!5m2!1sen!2sau",
+      facebookUrl: "https://www.facebook.com/PondokDaunADL",
+      hours: [
+        { label: "Mon - Wed", value: "11:30 AM - 7:00 PM" },
+        { label: "Thu", value: "11:30 AM - 8:00 PM" },
+        { label: "Fri", value: "11:30 AM - 7:00 PM" },
+        { label: "Sat - Sun", value: "11:30 AM - 3:00 PM" }
+      ]
+    }
+  ];
+
+  const currentBranch = branches.find(b => b.id === activeBranch) || branches[0];
+
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-serif font-bold text-stone-900 mb-8">Visit Us</h2>
+            <span className="text-brand-terracotta font-medium uppercase tracking-[0.3em] text-sm mb-4 block">Our Locations</span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-6">Visit Us</h2>
             
-            <div className="space-y-8">
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-brand-cream rounded-full flex items-center justify-center text-brand-olive shrink-0">
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">Location</h4>
-                  <p className="text-stone-600">75 Currie St, Adelaide SA 5000, Australia</p>
-                  <a 
-                    href="https://www.google.com/maps/place/Pondok+Daun+Restaurant/@-34.9244098,138.5961326,17z" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-brand-terracotta text-sm font-bold hover:underline mt-2 inline-block"
-                  >
-                    Get Directions
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-brand-cream rounded-full flex items-center justify-center text-brand-olive shrink-0">
-                  <Phone size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">Contact</h4>
-                  <p className="text-stone-600">0882121449</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-brand-cream rounded-full flex items-center justify-center text-brand-olive shrink-0">
-                  <Clock size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">Opening Hours</h4>
-                  <div className="grid grid-cols-2 gap-x-8 text-stone-600">
-                    <span>Mon - Sat:</span>
-                    <span>11:30 AM - 8:30 PM</span>
-                    <span>Sun:</span>
-                    <span>Closed</span>
-                  </div>
-                </div>
-              </div>
+            {/* Branch Selector Tabs */}
+            <div className="flex p-1 bg-stone-100 rounded-2xl mb-10 max-w-md">
+              {branches.map((branch) => (
+                <button
+                  key={branch.id}
+                  onClick={() => setActiveBranch(branch.id)}
+                  className={`flex-1 text-center py-3 rounded-xl text-sm font-semibold tracking-wide transition-all uppercase cursor-pointer ${
+                    activeBranch === branch.id
+                      ? "bg-brand-olive text-brand-cream shadow-md"
+                      : "text-stone-500 hover:text-stone-900"
+                  }`}
+                >
+                  {branch.label}
+                </button>
+              ))}
             </div>
 
-            <div className="mt-12 flex gap-4">
-              <a href="https://www.facebook.com/PondokDaunADL" className="w-10 h-10 border border-stone-200 rounded-full flex items-center justify-center text-stone-600 hover:bg-brand-olive hover:text-brand-cream hover:border-brand-olive transition-all">
+            <div className="space-y-8 min-h-[340px]">
+              {/* Branch Title heading */}
+              <motion.div
+                key={`${currentBranch.id}-details`}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-8"
+              >
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 bg-brand-cream rounded-full flex items-center justify-center text-brand-olive shrink-0">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-stone-800 mb-1">Location ({currentBranch.label})</h4>
+                    <p className="text-stone-600 max-w-sm">{currentBranch.address}</p>
+                    <a 
+                      href={currentBranch.directionsUrl}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-brand-terracotta text-sm font-bold hover:underline mt-2 inline-block transition-all"
+                    >
+                      Get Directions &rarr;
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 bg-brand-cream rounded-full flex items-center justify-center text-brand-olive shrink-0">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-stone-800 mb-1">Contact</h4>
+                    <p className="text-stone-600 font-mono text-base">{currentBranch.phone}</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 bg-brand-cream rounded-full flex items-center justify-center text-brand-olive shrink-0">
+                    <Clock size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-stone-800 mb-1">Opening Hours</h4>
+                    <div className="grid grid-cols-2 gap-x-8 text-stone-600 max-w-xs">
+                      {currentBranch.hours.map((entry, idx) => (
+                        <React.Fragment key={idx}>
+                          <span className="font-medium">{entry.label}:</span>
+                          <span>{entry.value}</span>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="mt-8 flex gap-4">
+              <a 
+                href={currentBranch.facebookUrl} 
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 border border-stone-200 rounded-full flex items-center justify-center text-stone-600 hover:bg-brand-olive hover:text-brand-cream hover:border-brand-olive transition-all"
+                aria-label="Facebook page"
+              >
                 <Facebook size={20} />
               </a>
             </div>
@@ -567,17 +670,26 @@ const LocationSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="h-[500px] rounded-3xl overflow-hidden shadow-lg border border-stone-100"
+            className="h-[450px] md:h-[500px] rounded-3xl overflow-hidden shadow-lg border border-stone-100 w-full relative"
           >
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.282846875704!2d138.5935576767475!3d-34.92440977284149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab0cf288bd6fe09%3A0x7d36c07f6ad7f196!2sPondok%20Daun%20Restaurant!5e0!3m2!1sen!2sau!4v1713094800000!5m2!1sen!2sau" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            {/* Smooth transition for active branch map inside a key-dependent animation state */}
+            <motion.div
+              key={`${currentBranch.id}-map`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <iframe 
+                src={currentBranch.embedMapUrl} 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </motion.div>
           </motion.div>
         </div>
       </div>
