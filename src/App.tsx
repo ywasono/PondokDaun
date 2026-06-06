@@ -543,6 +543,7 @@ const LocationSection = () => {
       directionsUrl: "https://www.google.com/maps/place/Pondok+Daun+Restaurant,+94+Currie+St,+Adelaide+SA+5000",
       embedMapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.282846875704!2d138.5935576767475!3d-34.92440977284149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab0cf288bd6fe09%3A0x7d36c07f6ad7f196!2sPondok%20Daun%20Restaurant!5e0!3m2!1sen!2sau!4v1713094800000!5m2!1sen!2sau",
       facebookUrl: "https://www.facebook.com/PondokDaunADL",
+      instagramUrl: "https://www.instagram.com/pondokdaunadl/",
       hours: [
         { label: "Mon - Sat", value: "11:30 AM - 8:30 PM" },
         { label: "Sun", value: "Closed" }
@@ -557,11 +558,10 @@ const LocationSection = () => {
       directionsUrl: "https://www.google.com/maps/place/Pondok+Daun+Sefton+Plaza/@-34.8759604,138.6031649,17z",
       embedMapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3273.1979313264424!2d138.6005899767448!3d-34.87596037281898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab0c9525b22c7d9%3A0xe2a51f5616fc1cdf!2sPondok+Daun+Sefton+Plaza!5e0!3m2!1sen!2sau!4v1713100000000!5m2!1sen!2sau",
       facebookUrl: "https://www.facebook.com/PondokDaunADL",
+      instagramUrl: "https://www.instagram.com/pondokdaunadl/",
       hours: [
-        { label: "Mon - Wed", value: "11:30 AM - 7:00 PM" },
-        { label: "Thu", value: "11:30 AM - 8:00 PM" },
-        { label: "Fri", value: "11:30 AM - 7:00 PM" },
-        { label: "Sat - Sun", value: "11:30 AM - 3:00 PM" }
+        { label: "Mon - Fri", value: "11:00 AM - 8:00 PM" },
+        { label: "Sat - Sun", value: "11:00 AM - 4:30 PM" }
       ]
     }
   ];
@@ -663,6 +663,17 @@ const LocationSection = () => {
               >
                 <Facebook size={20} />
               </a>
+              {currentBranch.instagramUrl && (
+                <a 
+                  href={currentBranch.instagramUrl} 
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 border border-stone-200 rounded-full flex items-center justify-center text-stone-600 hover:bg-brand-olive hover:text-brand-cream hover:border-brand-olive transition-all"
+                  aria-label="Instagram page"
+                >
+                  <Instagram size={20} />
+                </a>
+              )}
             </div>
           </motion.div>
 
@@ -719,7 +730,8 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-4">
-            <a href="https://www.facebook.com/PondokDaunADL" className="hover:text-white transition-colors"><Facebook size={20} /></a>
+            <a href="https://www.facebook.com/PondokDaunADL" className="hover:text-white transition-colors" aria-label="Facebook page"><Facebook size={20} /></a>
+            <a href="https://www.instagram.com/pondokdaunadl/" className="hover:text-white transition-colors" aria-label="Instagram page"><Instagram size={20} /></a>
           </div>
         </div>
         
